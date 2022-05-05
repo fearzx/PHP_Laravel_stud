@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->default(0);
+
+            $table->string('slug')->unique();
+            $table->string('title');
+            $table->text('description')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
